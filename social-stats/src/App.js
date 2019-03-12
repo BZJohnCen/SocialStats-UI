@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <Router>
         <div className='App'>
-          <SideBar />
+        <SideBar />
           <div className='App-Content'>
             <RouteList/>
           </div>
