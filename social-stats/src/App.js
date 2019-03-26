@@ -11,6 +11,7 @@ class App extends Component {
         <div className='App'>
         <SideBar />
           <div className='App-Content'>
+            {/*<SideBar />*/}
             <RouteList/>
           </div>
         </div>

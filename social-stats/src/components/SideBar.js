@@ -5,7 +5,7 @@ import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } f
 
 const SidebarDiv = styled.div`
   height: 100%;
-  width: 19%;
+  width: 15%;
   background-color: #343a40;
 `;
 const Sidebar = styled(Navbar)`
