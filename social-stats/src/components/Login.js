@@ -15,6 +15,7 @@ const LoginDiv = styled.div`
   margin-left: -8em;
   position: absolute;
   margin-top: -1em;
+  z-index: 1;
 `;
 const LoginContainer = styled(Container)`
   display: flex;
