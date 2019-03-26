@@ -7,6 +7,7 @@ const SidebarDiv = styled.div`
   height: 100%;
   width: 15%;
   background-color: #343a40;
+  transition: transform 0.3s ease-in-out;
 `;
 const Sidebar = styled(Navbar)`
   height: auto;

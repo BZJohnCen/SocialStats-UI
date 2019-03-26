@@ -29,6 +29,7 @@
 
 #sideBar.hide {
   transform: translate3d(-8vw, 0, 0);
+  z-index: 1;
 }
 
 /* .App-logo {
