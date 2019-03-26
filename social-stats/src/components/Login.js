@@ -6,9 +6,9 @@ import { Container, Col, Form, FormGroup, Label, Input, Button } from 'reactstra
 const LoginDiv = styled.div`
   /* height: 100%;
   width: inherit; */
-  background: #ff9966;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #ff5e62, #ff9966);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #ff5e62, #ff9966); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #A770EF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #FDB99B, #CF8BF3, #A770EF);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #FDB99B, #CF8BF3, #A770EF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   height: calc(100% + 2em);
   width: calc(100% + 9em);
@@ -29,6 +29,7 @@ const LoginContent = styled.div`
   border: 1px solid #ccc !important;
   border-radius: 1em;
   padding: 1em 3em 1em 3em;
+  margin: 3em 0em 3em 0em;
   -webkit-box-shadow: 0 10px 6px -6px #777;
        -moz-box-shadow: 0 10px 6px -6px #777;
             box-shadow: 0 10px 6px -6px #777;
@@ -59,18 +60,30 @@ const LoginForm = styled(Form)`
 `;
 const CustomInput = styled(Input)`
   border-radius: 0.4em;
+  -webkit-box-shadow: 0 6px 6px -6px #777;
+       -moz-box-shadow: 0 6px 6px -6px #777;
+            box-shadow: 0 6px 6px -6px #777;
 `;
 const SubmitButton = styled(Button)`
   background-color: transparent;
   border-radius: 0.7em;
   width: 75%;
   height: 2.5em;
-  margin: 2em 1em 1em 1em;
+  margin: 1em 1em 1em 1em;
   color: #000;
+  -webkit-box-shadow: 0 6px 6px -6px #777;
+       -moz-box-shadow: 0 6px 6px -6px #777;
+            box-shadow: 0 6px 6px -6px #777;
 
   :hover{
     background-color: #2D9CDB;
     border-color: transparent;
+  }
+`;
+const SignupButton =styled(SubmitButton)`
+  margin-top: 0.2em;
+  :hover{
+    background-color: #74EBA7;
   }
 `;
 
@@ -95,7 +108,7 @@ class Login extends Component<props> {
             <LoginForm>
               <Col>
                 <FormGroup>
-                  <Label>Email</Label>
+                  <Label>Username</Label>
                   <CustomInput
                     type="email"
                     name="email"
@@ -115,7 +128,9 @@ class Login extends Component<props> {
                   />
                 </FormGroup>
               </Col>
+              <div style={{margin: '0.7em'}}></div>
               <SubmitButton>Login</SubmitButton>
+              <SignupButton>Sign Up</SignupButton>
             </LoginForm>
           </LoginContent>
         </LoginContainer>

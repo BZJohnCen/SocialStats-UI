@@ -3,14 +3,15 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Login from '../components/Login';
 import Home from '../views/Home';
 // import SideBar from '../components/SideBar';
-import Test from '../Test';
+import Test from '../views/Test';
+import Signup from '../views/onboarding/Signup';
 
 const RouteList = () => (
   <Switch>
     <Route path='/login' component={Login} />
     {/*<Route path='/' component={SideBar} />*/}
     <PrivateRoute exact path='/' component={Home} />
-    <Route path='/test' component={Test} />
+    <Route path='/test' component={Signup} />
   </Switch>
 )
 
