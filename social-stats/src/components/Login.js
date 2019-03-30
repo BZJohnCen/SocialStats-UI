@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
 import { Container, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 //styled components
 const LoginDiv = styled.div`
   /* height: 100%;
   width: inherit; */
   background: #A770EF;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #FDB99B, #CF8BF3, #A770EF);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #FDB99B, #CF8BF3, #A770EF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: -webkit-linear-gradient(to top, #FDB99B, #CF8BF3, #A770EF);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #FDB99B, #CF8BF3, #A770EF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   height: calc(100% + 2em);
   width: calc(100% + 9em);
@@ -82,6 +83,7 @@ const SubmitButton = styled(Button)`
 `;
 const SignupButton =styled(SubmitButton)`
   margin-top: 0.2em;
+  width: 90%;
   :hover{
     background-color: #74EBA7;
   }
@@ -130,7 +132,7 @@ class Login extends Component<props> {
               </Col>
               <div style={{margin: '0.7em'}}></div>
               <SubmitButton>Login</SubmitButton>
-              <SignupButton>Sign Up</SignupButton>
+              <Link to="/signup" style={{ width: '84%'}}><SignupButton>Sign Up</SignupButton></Link>
             </LoginForm>
           </LoginContent>
         </LoginContainer>
