@@ -5,13 +5,16 @@ import Home from '../views/Home';
 // import SideBar from '../components/SideBar';
 import Test from '../views/Test';
 import Signup from '../views/onboarding/Signup';
+import TwitterOAuth from '../views/onboarding/TwitterOAuth';
 
 const RouteList = () => (
   <Switch>
     <Route path='/login' component={Login} />
     {/*<Route path='/' component={SideBar} />*/}
     <PrivateRoute exact path='/' component={Home} />
-    <Route path='/test' component={Signup} />
+    <Route path='/current' component={TwitterOAuth} />
+    <Route path='/signup' component={Signup} />
+    <Route path='/test' component={Test} />
   </Switch>
 )
 
