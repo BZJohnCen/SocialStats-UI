@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
-<<<<<<< HEAD
 import { Container, Col, Row, Form, FormGroup, Label, Input, Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button } from 'reactstrap';
 import BackendHelper from '../../BackendHelper';
-=======
-import { Container, Col, Row, Form, FormGroup, Label, Input, Card, Button } from 'reactstrap';
-
->>>>>>> 6990241f99682debee9d3c2b86de4d53b3c6bed1
 //styled components
 const SignupDiv = styled(Card)`
   // height: 100%;
@@ -179,11 +174,7 @@ class Signup extends Component {
                       type="url"
                       name="companyWebsite"
                       id="companyWebsite"
-<<<<<<< HEAD
                       // value="https://"
-=======
-                      defaultValue="https://"
->>>>>>> 6990241f99682debee9d3c2b86de4d53b3c6bed1
                     />
                   </FormGroup>
 
