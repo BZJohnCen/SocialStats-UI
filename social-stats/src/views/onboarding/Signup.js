@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from '@emotion/styled';
 import { Container, Col, Row, Form, FormGroup, Label, Input, Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button } from 'reactstrap';
-
+import BackendHelper from '../../BackendHelper';
 //styled components
 const SignupDiv = styled(Card)`
   // height: 100%;
@@ -90,14 +90,42 @@ const ArrowButton = styled.button`
     outline: 0;
   }
 `;
+//functions
+
+
 
 //main component
-class Signup extends Component<props> {
+class Signup extends Component {
   constructor(props){
     super(props);
     this.state = {
-      default: true
+      default: true,
+      name: '',
+      password: '',
+      username: '',
+      confirmPassword: '',
+      companyName: '',
+      companyWebsite: '',
+      companyIndustry: ''
     }
+    this.handleSignup = this.handleSignup.bind(this)
+  }
+  handleSignup = () =>{
+    BackendHelper.signup({
+      name: this.state.name,
+      username: this.state.username,
+      password: this.state.password,
+      confirmPassword: this.state.confirmPassword,
+      companyName: this.state.companyName,
+      companyWebsite: this.state.companyWebsite,
+      companyIndustry: this.state.companyIndustry
+    })
+    .then(res => {
+      if (res.status(201)){
+        
+      }
+    })
+    .catch(err => console.log(err))
   }
 
   render(){
@@ -119,6 +147,7 @@ class Signup extends Component<props> {
                   <FormGroup>
                     <Label for="name">Name</Label>
                     <CustomInput
+                      onChange = {e => this.setState({name: e.target.value})}
                       type="text"
                       name="name"
                       id="name"
@@ -129,6 +158,7 @@ class Signup extends Component<props> {
                   <FormGroup>
                     <Label for="companyName">Company Name</Label>
                     <CustomInput
+                      onChange = {e => this.setState({companyName: e.target.value})}
                       type="text"
                       name="companyName"
                       id="companyName"
@@ -139,16 +169,18 @@ class Signup extends Component<props> {
                   <FormGroup>
                     <Label for="companyWebsite">Company Website</Label>
                     <CustomInput
+                      onChange = {e => this.setState({companyWebsite: e.target.value})}
                       type="url"
                       name="companyWebsite"
                       id="companyWebsite"
-                      value="https://"
+                      // value="https://"
                     />
                   </FormGroup>
 
                   <FormGroup>
                     <Label for="companyIndustry">Industry</Label>
                     <CustomInput
+                      onChange = {e => this.setState({companyIndustry: e.target.value})}
                       type="text"
                       name="industry"
                       id="companyIndustry"
@@ -160,6 +192,7 @@ class Signup extends Component<props> {
                   <FormGroup>
                     <Label for="username">Username</Label>
                     <CustomInput
+                      onChange = {e => this.setState({username: e.target.value})}
                       type="text"
                       name="username"
                       id="username"
@@ -170,6 +203,7 @@ class Signup extends Component<props> {
                   <FormGroup>
                     <Label for="password">Password</Label>
                     <CustomInput
+                      onChange = {e => this.setState({password: e.target.value})}
                       type="password"
                       name="password"
                       id="password"
@@ -180,6 +214,7 @@ class Signup extends Component<props> {
                   <FormGroup>
                     <Label for="confirmPassword">Confirm Password</Label>
                     <CustomInput
+                      onChange = {e => this.setState({confirmPassword: e.target.value})}
                       type="password"
                       name="confirmPassword"
                       id="confirmPassword"
@@ -188,7 +223,7 @@ class Signup extends Component<props> {
                   </FormGroup>
                 </Col>
               </Row>
-              <SubmitButton>Next</SubmitButton>
+              <SubmitButton onClick={e => { e.preventDefault(); this.handleSignup(e) }}>Next</SubmitButton>
             </SignupForm>
           </SignupContent>
         </SignupContainer>

@@ -88,7 +88,7 @@ const SignupButton =styled(SubmitButton)`
 `;
 
 //main component
-class Login extends Component<props> {
+class Login extends Component {
   constructor(props){
     super(props);
     this.state = {

@@ -94,7 +94,7 @@ const ArrowButton = styled.button`
 `;
 
 //main component
-class TwitterOAuth extends Component<props> {
+class TwitterOAuth extends Component {
   constructor(props){
     super(props);
     this.state = {
