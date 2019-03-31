@@ -6,6 +6,10 @@ import Home from '../views/Home';
 import Test from '../views/Test';
 import Signup from '../views/onboarding/Signup';
 import DashboardTest from '../views/DashboardTest'
+import TwitterOAuth from '../views/onboarding/TwitterOAuth';
+import LinkedinOAuth from '../views/onboarding/LinkedinOAuth';
+import InstagramOAuth from '../views/onboarding/InstagramOAuth';
+import FacebookOAuth from '../views/onboarding/FacebookOAuth';
 
 const RouteList = () => (
   <Switch>
@@ -14,6 +18,12 @@ const RouteList = () => (
     <PrivateRoute exact path='/' component={Home} />
     <Route path='/test' component={Signup} />
     <Route path='/dashtest' component={DashboardTest} />
+    <Route path='/twitter' component={TwitterOAuth} />
+    <Route path='/signup' component={Signup} />
+    <Route path='/test' component={Test} />
+    <Route path='/linkedin' component={LinkedinOAuth} />
+    <Route path='/instagram' component={InstagramOAuth} />
+    <Route path='/facebook' component={FacebookOAuth} />
   </Switch>
 )
 

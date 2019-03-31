@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
-import { Container, Col, Row, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Container, Col, Row, Form, FormGroup, Label, Input, Card, Button } from 'reactstrap';
 
 //styled components
-const SignupDiv = styled.div`
-  /* height: 100%;
-  width: inherit; */
-  background: #FF5F6D;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to top, #FFC371, #FF5F6D);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top, #FFC371, #FF5F6D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+const SignupDiv = styled(Card)`
+  // height: 100%;
+  // width: inherit;
+  background: #FF5F6D;  //fallback for old browsers
+  background: -webkit-linear-gradient(to top, #FFC371, #FF5F6D);  //Chrome 10-25, Safari 5.1-6
+  background: linear-gradient(to top, #FFC371, #FF5F6D); //W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+
 
   height: calc(100% + 2em);
   width: calc(100% + 9em);
@@ -38,6 +38,7 @@ const SignupContent = styled.div`
 const SignupHeader = styled.div`
   display: flex;
   flex-direction:row;
+  position: relative;
   justify-content: center;
   height: fit-content;
   width: auto;
@@ -50,11 +51,6 @@ const SignupForm = styled(Form)`
   justify-content: center;
   align-items: center;
 `;
-const ColGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
 const CustomInput = styled(Input)`
   border-radius: 0.4em;
   -webkit-box-shadow: 0 6px 6px -6px #777;
@@ -64,9 +60,9 @@ const CustomInput = styled(Input)`
 const SubmitButton = styled(Button)`
   background-color: transparent;
   border-radius: 0.7em;
-  width: 75%;
+  width: 25%;
   height: 2.5em;
-  margin: 2em 1em 1em 1em;
+  margin: 2em 1em 1.5em 1em;
   color: #000;
   -webkit-box-shadow: 0 6px 6px -6px #777;
        -moz-box-shadow: 0 6px 6px -6px #777;
@@ -77,8 +73,16 @@ const SubmitButton = styled(Button)`
     border-color: transparent;
   }
 `;
-const Arrow = styled.span`
-  display: flex;
+const ArrowButton = styled.button`
+  background: none;
+  border: none;
+
+  #backArrow:hover{
+    fill: #2D9CDB;
+  }
+  :focus{
+    outline: 0;
+  }
 `;
 
 //main component
@@ -88,8 +92,13 @@ class Signup extends Component<props> {
     this.state = {
       default: true
     }
+
+    this.prevPage = this.prevPage.bind(this);
   }
 
+  prevPage(){
+    this.props.history.goBack();
+  }
 
   render(){
     return (
@@ -97,82 +106,84 @@ class Signup extends Component<props> {
         <SignupContainer>
           <SignupContent>
             <SignupHeader>
-              <Arrow>
-                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm-4.828 11.5l4.608 3.763-.679.737-6.101-5 6.112-5 .666.753-4.604 3.747h11.826v1h-11.828z"/></svg>
-              </Arrow>
+              <div style={{position: 'absolute', left: '0px'}}>
+                <ArrowButton onClick={this.prevPage}>
+                  <svg id="backArrow" width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm-4.828 11.5l4.608 3.763-.679.737-6.101-5 6.112-5 .666.753-4.604 3.747h11.826v1h-11.828z"/></svg>
+                </ArrowButton>
+              </div>
               <h2>Sign Up</h2>
             </SignupHeader>
             <SignupForm>
               <Row style={{width: '100%'}}>
                 <Col md="6" sm={12}>
                   <FormGroup>
-                    <Label>Name</Label>
+                    <Label for="name">Name</Label>
                     <CustomInput
-                      type="email"
-                      name="email"
-                      id="exampleEmail"
+                      type="text"
+                      name="name"
+                      id="name"
                       placeholder="John Smith"
                     />
                   </FormGroup>
 
                   <FormGroup>
-                    <Label for="examplePassword">Company Name</Label>
+                    <Label for="companyName">Company Name</Label>
                     <CustomInput
-                      type="password"
-                      name="password"
-                      id="examplePassword"
+                      type="text"
+                      name="companyName"
+                      id="companyName"
                       placeholder="Desk Nibbles"
                     />
                   </FormGroup>
 
                   <FormGroup>
-                    <Label for="examplePassword">Company Website</Label>
+                    <Label for="companyWebsite">Company Website</Label>
                     <CustomInput
-                      type="password"
-                      name="password"
-                      id="examplePassword"
-                      placeholder="www.desknibbles.ca"
+                      type="url"
+                      name="companyWebsite"
+                      id="companyWebsite"
+                      defaultValue="https://"
                     />
                   </FormGroup>
 
                   <FormGroup>
-                    <Label for="examplePassword">Industry</Label>
+                    <Label for="companyIndustry">Industry</Label>
                     <CustomInput
-                      type="password"
-                      name="password"
-                      id="examplePassword"
-                      placeholder="Food"
+                      type="text"
+                      name="industry"
+                      id="companyIndustry"
+                      placeholder="Office Solutions"
                     />
                   </FormGroup>
                 </Col>
                 <Col md="6">
                   <FormGroup>
-                    <Label>Username</Label>
+                    <Label for="username">Username</Label>
                     <CustomInput
-                      type="email"
-                      name="email"
-                      id="exampleEmail"
+                      type="text"
+                      name="username"
+                      id="username"
                       placeholder="username"
                     />
                   </FormGroup>
 
                   <FormGroup>
-                    <Label for="examplePassword">Password</Label>
+                    <Label for="password">Password</Label>
                     <CustomInput
                       type="password"
                       name="password"
-                      id="examplePassword"
-                      placeholder="password"
+                      id="password"
+                      placeholder="********"
                     />
                   </FormGroup>
 
                   <FormGroup>
-                    <Label for="examplePassword">Confirm Password</Label>
+                    <Label for="confirmPassword">Confirm Password</Label>
                     <CustomInput
                       type="password"
-                      name="password"
-                      id="examplePassword"
-                      placeholder="password"
+                      name="confirmPassword"
+                      id="confirmPassword"
+                      placeholder="********"
                     />
                   </FormGroup>
                 </Col>

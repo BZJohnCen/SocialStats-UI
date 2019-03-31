@@ -43,18 +43,21 @@ class SideBar extends Component<props>{
     return (
       <SidebarDiv id="sideBar" className={visible}>
         <Sidebar color="faded" dark className='bg-dark'>
-          <NavbarBrand href="/" className="mr-auto">reactstrap</NavbarBrand>
+          <NavbarBrand href="/" className="mr-auto">SocialStats</NavbarBrand>
           <NavbarToggler onClick={this.toggleSideNav} className="mr-2" />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav navbar>
               <NavItem>
-                <Navlink href="/components/">
+                <Navlink href="/current">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" width="24" height="24" viewBox="0 0 24 24"><path d="M24 3.875l-6 1.221 1.716 1.708-5.351 5.358-3.001-3.002-7.336 7.242 1.41 1.418 5.922-5.834 2.991 2.993 6.781-6.762 1.667 1.66 1.201-6.002zm0 16.125v2h-24v-20h2v18h22z"/></svg>
-                  Components
+                  Current
                 </Navlink>
               </NavItem>
               <NavItem>
-                <Navlink href="/">GitHub</Navlink>
+                <Navlink href="/signup">Signup</Navlink>
+              </NavItem>
+              <NavItem>
+                <Navlink href="/test">Test</Navlink>
               </NavItem>
             </Nav>
           </Collapse>
