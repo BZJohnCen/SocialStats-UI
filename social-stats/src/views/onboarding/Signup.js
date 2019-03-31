@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from '@emotion/styled';
 import { Container, Col, Row, Form, FormGroup, Label, Input, Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button } from 'reactstrap';
-import BackendHelper from '../../BackendHelper';
+import AuthHelper from '../../AuthHelper';
 //styled components
 const SignupDiv = styled(Card)`
   // height: 100%;
@@ -106,7 +106,7 @@ class Signup extends Component {
     this.handleSignup = this.handleSignup.bind(this)
   }
   handleSignup = () =>{
-    BackendHelper.signup({
+    AuthHelper.signup({
       name: this.state.name,
       username: this.state.username,
       password: this.state.password,

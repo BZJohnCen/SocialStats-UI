@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from '@emotion/styled';
 import { Container, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import BackendHelper from '.././BackendHelper';
+import AuthHelper from '../AuthHelper';
 //styled components
 const LoginDiv = styled.div`
   /* height: 100%;
@@ -101,12 +101,15 @@ class Login extends Component {
     this.handleLogin = this.handleLogin.bind(this)
   }
 handleLogin = () => {
-  BackendHelper.login({
+  AuthHelper.login({
     username: this.state.username,
     password: this.state.password
   })
   .then(res => {
     console.log(res)
+  })
+  .catch(err => {
+    console.log(err)
   })
 }
   render(){
