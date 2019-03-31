@@ -116,11 +116,13 @@ class Signup extends Component {
       companyIndustry: this.state.companyIndustry
     })
     .then(res => {
-      if (res.status(201)){
-        
+      if (res.status == 201){
+        console.log('signup successful')
       }
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      console.log('username exists')
+    })
 
     this.prevPage = this.prevPage.bind(this);
   }

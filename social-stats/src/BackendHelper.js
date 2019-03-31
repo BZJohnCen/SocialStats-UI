@@ -26,12 +26,31 @@ const BackendHelper = {
                 resolve(res);
               })
               .catch(err => {
-                console.log(err);
+                reject(err);
               });
 
         })
 
         
+    },
+    login: (params) => {
+        return new Promise((resolve,reject) => {
+            Object.keys(params).forEach(k => {
+                if(!params[k]) reject('Please fill out all fields')
+            } )
+            
+            axios.post('http://localhost:3000/user/login', {
+                username: params.username,
+                password: params.password,
+              })
+              .then(res =>  {
+                resolve(res);
+              })
+              .catch(err => {
+                reject(err);
+              });
+
+        })
     }
 }
 export default BackendHelper;
