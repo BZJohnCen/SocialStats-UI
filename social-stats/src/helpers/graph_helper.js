@@ -1,19 +1,29 @@
+import moment from 'moment';
+
 const GraphHelper = {
-    convertObjArrToDataset: (objArr, yAxis) => {
-        console.log('eeyeyeyey')
-        var yKeys = {};
-        var numGraphs = 0;
-        var graphs = [];
-        objArr.forEach(obj => {
-            var key = obj[yAxis]
-            delete obj[yAxis]
-            numGraphs = Object.keys(obj).length;
-            yKeys[key] = obj
-        });
+    convertObjArrToDataset: (objArr, xAxis) => {
 
-        yKeys.forEach(k => {
+        var allY = Object.keys(objArr[0]);
+        var allGraphs = [];
+        allY.splice(allY.indexOf(xAxis), 1)
 
+        allY.forEach(y => {
+            var objMapArr = objArr.map(obj => {
+                return {
+                    x: xAxis === 'date' ? moment(obj[xAxis]).toDate() : obj[xAxis],
+                    y: obj[y],
+                }
+            })
+            objMapArr.sort((a, b) => moment(b.x).unix() - moment(a.x).unix());
+            allGraphs.push({
+                yTitle: y,
+                xTitle: xAxis,
+                graphTitle: y + ' vs ' + xAxis,
+                data: objMapArr
+            });
         })
+        console.log('allGraphs', allGraphs)
+        return allGraphs
     }
 }
-module.exports = GraphHelper;
+export default GraphHelper;

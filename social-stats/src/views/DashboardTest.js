@@ -27,7 +27,7 @@ class DashboardTest extends Component<props> {
             <div>
                 <Container>
                     <Row>
-                        <Col md={6} xs={12}>
+                        <Col md={12} xs={12}>
                             <GraphCard props={{ chartData: this.state.fetchRes }}></GraphCard>
                         </Col>
                     </Row>
