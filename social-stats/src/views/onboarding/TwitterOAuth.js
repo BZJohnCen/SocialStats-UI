@@ -53,17 +53,6 @@ const OnboardingForm = styled(Form)`
   align-items: center;
   margin: 6em 0em 8em 0em;
 `;
-// const ColGroup = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   width: 100%;
-// `;
-// const CustomInput = styled(Input)`
-//   border-radius: 0.4em;
-//   -webkit-box-shadow: 0 6px 6px -6px #777;
-//        -moz-box-shadow: 0 6px 6px -6px #777;
-//             box-shadow: 0 6px 6px -6px #777;
-// `;
 const AuthButton = styled(Button)`
   background-color: transparent;
   border-radius: 0.7em;
@@ -108,6 +97,12 @@ class TwitterOAuth extends Component<props> {
     this.state = {
       default: true
     }
+
+    this.prevPage = this.prevPage.bind(this);
+  }
+
+  prevPage(){
+    this.props.history.goBack();
   }
 
   render(){
@@ -117,11 +112,9 @@ class TwitterOAuth extends Component<props> {
           <OnboardingContent>
             <OnboardingHeader>
               <div style={{position: 'absolute', left: '0px'}}>
-                <Link to="/signup">
-                  <ArrowButton>
-                    <svg id="backArrow" width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm-4.828 11.5l4.608 3.763-.679.737-6.101-5 6.112-5 .666.753-4.604 3.747h11.826v1h-11.828z"/></svg>
-                  </ArrowButton>
-                </Link>
+                <ArrowButton onClick={this.prevPage}>
+                  <svg id="backArrow" width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm-4.828 11.5l4.608 3.763-.679.737-6.101-5 6.112-5 .666.753-4.604 3.747h11.826v1h-11.828z"/></svg>
+                </ArrowButton>
               </div>
               <h2>Authorize Twitter</h2>
               {/*<div style={{position: 'absolute', right: '0px'}}>

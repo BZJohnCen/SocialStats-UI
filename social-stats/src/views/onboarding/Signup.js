@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
 import { Container, Col, Row, Form, FormGroup, Label, Input, Card, Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
 
 //styled components
 const SignupDiv = styled(Card)`
@@ -52,11 +51,6 @@ const SignupForm = styled(Form)`
   justify-content: center;
   align-items: center;
 `;
-// const ColGroup = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   width: 100%;
-// `;
 const CustomInput = styled(Input)`
   border-radius: 0.4em;
   -webkit-box-shadow: 0 6px 6px -6px #777;
@@ -98,6 +92,12 @@ class Signup extends Component<props> {
     this.state = {
       default: true
     }
+
+    this.prevPage = this.prevPage.bind(this);
+  }
+
+  prevPage(){
+    this.props.history.goBack();
   }
 
   render(){
@@ -107,11 +107,9 @@ class Signup extends Component<props> {
           <SignupContent>
             <SignupHeader>
               <div style={{position: 'absolute', left: '0px'}}>
-                <Link to="/current">
-                  <ArrowButton>
-                    <svg id="backArrow" width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm-4.828 11.5l4.608 3.763-.679.737-6.101-5 6.112-5 .666.753-4.604 3.747h11.826v1h-11.828z"/></svg>
-                  </ArrowButton>
-                </Link>
+                <ArrowButton onClick={this.prevPage}>
+                  <svg id="backArrow" width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm-4.828 11.5l4.608 3.763-.679.737-6.101-5 6.112-5 .666.753-4.604 3.747h11.826v1h-11.828z"/></svg>
+                </ArrowButton>
               </div>
               <h2>Sign Up</h2>
             </SignupHeader>
@@ -144,7 +142,7 @@ class Signup extends Component<props> {
                       type="url"
                       name="companyWebsite"
                       id="companyWebsite"
-                      value="https://"
+                      defaultValue="https://"
                     />
                   </FormGroup>
 

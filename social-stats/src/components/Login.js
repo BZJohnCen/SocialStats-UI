@@ -70,7 +70,7 @@ const SubmitButton = styled(Button)`
   border-radius: 0.7em;
   width: 75%;
   height: 2.5em;
-  margin: 1em 1em 1em 1em;
+  margin: 1em 1em 1.5em 1em;
   color: #000;
   -webkit-box-shadow: 0 6px 6px -6px #777;
        -moz-box-shadow: 0 6px 6px -6px #777;
