@@ -1,0 +1,20 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/SocialStats/SocialStats-UI
+permissions:
+  - object: /var/www/SocialStats/SocialStats-UI/social-stats
+    patterns: "*.sh"
+    owner: root
+    group: root
+    mode: 755
+    type:
+      - file
+hooks:
+  BeforeInstall:
+    - location: /social-stats/scripts/packageInstall.sh
+      timeout: 300
+  AfterInstall:
+    - location: /social-stats/scripts/build.sh
+      timeout: 300
