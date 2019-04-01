@@ -5,6 +5,7 @@ import Home from '../views/Home';
 // import SideBar from '../components/SideBar';
 import Test from '../views/Test';
 import Signup from '../views/onboarding/Signup';
+import DashboardTest from '../views/DashboardTest'
 import TwitterOAuth from '../views/onboarding/TwitterOAuth';
 import LinkedinOAuth from '../views/onboarding/LinkedinOAuth';
 import InstagramOAuth from '../views/onboarding/InstagramOAuth';
@@ -15,6 +16,8 @@ const RouteList = () => (
     <Route path='/login' component={Login} />
     {/*<Route path='/' component={SideBar} />*/}
     <PrivateRoute exact path='/' component={Home} />
+    <Route path='/test' component={Signup} />
+    <Route path='/dashtest' component={DashboardTest} />
     <Route path='/twitter' component={TwitterOAuth} />
     <Route path='/signup' component={Signup} />
     <Route path='/test' component={Test} />
@@ -30,11 +33,11 @@ const isAuthenticated = () => {
 
 const PrivateRoute = ({ component: Component, path, otherProps }) => (
   <Route
-    { ...{ path } }
-    render = { (props) => (
-      isAuthenticated() ? ( <Component {...props} {...otherProps} /> ) :
-        ( <Redirect push to = { {pathname: '/login', state: { from: props.location }}}/>)
-      )
+    {...{ path }}
+    render={(props) => (
+      isAuthenticated() ? (<Component {...props} {...otherProps} />) :
+        (<Redirect push to={{ pathname: '/login', state: { from: props.location } }} />)
+    )
     }
   />
 );

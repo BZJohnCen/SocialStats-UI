@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import SideBar from './components/SideBar';
 import RouteList from './routes/RouteList';
 import './App.css';
+import '../node_modules/react-vis/dist/style.css';
 
 class App extends Component {
   render() {

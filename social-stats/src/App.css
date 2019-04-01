@@ -7,18 +7,20 @@
   left: 0;
   right: 0;
   overflow-y: hidden;
+  background-image: url("/bg2.png");
+  background-repeat: repeat;
 }
 
 .App-Content {
-  /* display: flex; */
-  /* width: inherit; */
-  /* margin-top: 4em; */
-  /* height: 100%; */
-  /* height: calc(100% - 4em); */
   height: calc(100% - 2em);
   width: -webkit-fill-available;
   margin: 1em 1em 1em 7.3em;
   position: absolute;
+  background-image: url("/bg2.png");
+  background-repeat: repeat;
+}
+
+.dash-container {
 }
 
 #sideBar.show {
@@ -32,32 +34,29 @@
   z-index: 1;
 }
 
-/* .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.outer-div {
+  height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+} 
+
+.card, .popover {
+  background: #FFFFFF;
+  mix-blend-mode: normal;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 0.75em !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.btn {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 2em !important;
+  border: none !important;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-primary {
+  background: #2D9CDB !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+.btn-secondary {
+  background: #FFAF68!important;
+}
