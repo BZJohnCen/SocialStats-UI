@@ -66,7 +66,6 @@ class GraphCard extends Component<props> {
                     </UncontrolledPopover>
                     <Row>
                         <DiscreteColorLegend orientation='horizontal' items={collection.map((d, i) => { return { color: d.color, title: i + ': ' + d.yTitle } })} />
-
                         {
                             this.state.loading ?
                                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -78,18 +77,17 @@ class GraphCard extends Component<props> {
                                     height={300}>
                                     <XAxis />
                                     {
-                                        collection.map((d, i) => {
-                                            return d.visible &&
-                                                <LineMarkSeries
-                                                    key={i}
-                                                    color={d.color}
-                                                    onNearestX={(v, { index }) => {
-                                                        if (i === 0)
-                                                            this.setState({ crosshairValues: collection.map(set => set.data[index]) })
-                                                    }}
-                                                    curve={'curveMonotoneX'}
-                                                    animation
-                                                    data={d.data} />
+                                        collection.filter(d => d.visible).map((d, i) => {
+                                            return <LineMarkSeries
+                                                key={i}
+                                                color={d.color}
+                                                onNearestX={(v, { index }) => {
+                                                    if (i === 0)
+                                                        this.setState({ crosshairValues: collection.map(set => set.data[index]) })
+                                                }}
+                                                curve={'curveMonotoneX'}
+                                                animation
+                                                data={d.data} />
                                         })
                                     }
                                     <Crosshair values={this.state.crosshairValues} />

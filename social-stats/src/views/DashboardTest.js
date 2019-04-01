@@ -39,7 +39,7 @@ class DashboardTest extends Component<props> {
     }
 
     componentDidMount() {
-        fetch('http://localhost:4000/test/snapshots', {
+        fetch('/test/snapshots', {
             method: 'GET',
             'Content-Type': 'application/json'
         })
