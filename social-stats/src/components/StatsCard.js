@@ -8,11 +8,9 @@ class StatsCard extends Component<props> {
     }
     render() {
         return (
-            <Card style={{ textAlign: 'center' }}>
-                <CardBody>
-                    <h3>{this.props.props.stat}</h3>
-                    <p>{this.props.props.title}</p>
-                </CardBody>
+            <Card className='pt-2' style={{ textAlign: 'center' }}>
+                <h3>{this.props.props.stat}</h3>
+                <p>{this.props.props.title}</p>
             </Card>
         )
     }

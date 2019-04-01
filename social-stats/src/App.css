@@ -40,7 +40,7 @@
   overflow-y: auto;
 } 
 
-.card {
+.card, .popover {
   background: #FFFFFF;
   mix-blend-mode: normal;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
