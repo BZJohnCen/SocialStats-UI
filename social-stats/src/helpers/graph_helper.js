@@ -18,7 +18,7 @@ const GraphHelper = {
             allGraphs.push({
                 yTitle: y,
                 xTitle: xAxis,
-                graphTitle: y + ' vs ' + xAxis,
+                visible: true,
                 data: objMapArr
             });
         })
