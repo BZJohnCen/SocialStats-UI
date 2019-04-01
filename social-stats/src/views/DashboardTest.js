@@ -39,7 +39,7 @@ class DashboardTest extends Component<props> {
     }
 
     componentDidMount() {
-        fetch('http://localhost:4000/test/snapshots', {
+        fetch('/test/snapshots', {
             method: 'GET',
             'Content-Type': 'application/json'
         })
@@ -53,7 +53,7 @@ class DashboardTest extends Component<props> {
         return (
             <div className='dash-container'>
                 <Container>
-                    <Row className='my-2'>
+                    <Row className='mb-3'>
 
                         {this.state.statsCardData.map((s, i) => <Col md={2} xs={12}>
                             <StatsCard props={s} />

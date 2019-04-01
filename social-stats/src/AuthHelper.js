@@ -14,7 +14,7 @@ const BackendHelper = {
             } )
             if(params['confirmPassword'] != params['password']) reject ("passwords don't match")
 
-            axios.post('http://localhost:3000/user', {
+            axios.post('/user', {
                 name: params.name,
                 username: params.username,
                 password: params.password,
@@ -39,7 +39,7 @@ const BackendHelper = {
                 if(!params[k]) reject('Please fill out all fields')
             } )
             
-            axios.post('http://localhost:3000/user/login', {
+            axios.post('/user/login', {
                 username: params.username,
                 password: params.password,
               })
