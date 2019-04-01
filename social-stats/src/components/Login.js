@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from '@emotion/styled';
 import { Container, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
+import AuthHelper from '../AuthHelper';
 //styled components
 const LoginDiv = styled.div`
   /* height: 100%;
@@ -90,14 +90,28 @@ const SignupButton =styled(SubmitButton)`
 `;
 
 //main component
-class Login extends Component<props> {
+class Login extends Component {
   constructor(props){
     super(props);
     this.state = {
-      default: true
+      default: true,
+      username: '',
+      password: '',
     }
+    this.handleLogin = this.handleLogin.bind(this)
   }
-
+handleLogin = () => {
+  AuthHelper.login({
+    username: this.state.username,
+    password: this.state.password
+  })
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
   render(){
     return (
       <LoginDiv>
@@ -112,9 +126,7 @@ class Login extends Component<props> {
                 <FormGroup>
                   <Label>Username</Label>
                   <CustomInput
-                    type="email"
-                    name="email"
-                    id="exampleEmail"
+                    onChange = {e => this.setState({username: e.target.value})}
                     placeholder="username"
                   />
                 </FormGroup>
@@ -123,6 +135,7 @@ class Login extends Component<props> {
                 <FormGroup>
                   <Label for="examplePassword">Password</Label>
                   <CustomInput
+                    onChange = {e => this.setState({password: e.target.value})}
                     type="password"
                     name="password"
                     id="examplePassword"
@@ -131,7 +144,7 @@ class Login extends Component<props> {
                 </FormGroup>
               </Col>
               <div style={{margin: '0.7em'}}></div>
-              <SubmitButton>Login</SubmitButton>
+              <SubmitButton onClick={e => { e.preventDefault(); this.handleLogin(e) }}>Login</SubmitButton>
               <Link to="/signup" style={{ width: '84%'}}><SignupButton>Sign Up</SignupButton></Link>
             </LoginForm>
           </LoginContent>

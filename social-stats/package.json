@@ -5,8 +5,10 @@
   "dependencies": {
     "@emotion/core": "^10.0.9",
     "@emotion/styled": "^10.0.9",
+    "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "moment": "^2.24.0",
+    "dotenv": "^7.0.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router": "^4.3.1",
@@ -17,7 +19,7 @@
     "reactstrap": "^7.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=7000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

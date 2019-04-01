@@ -91,7 +91,7 @@ const TwitterLogo = styled.span`
 `;
 
 //main component
-class TwitterOAuth extends Component<props> {
+class TwitterOAuth extends Component {
   constructor(props){
     super(props);
     this.state = {
