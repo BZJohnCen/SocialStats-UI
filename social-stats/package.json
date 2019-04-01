@@ -33,5 +33,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "http://ss.pbnj.io"
+  "proxy": "http://ss.pbnj.io/api"
 }
