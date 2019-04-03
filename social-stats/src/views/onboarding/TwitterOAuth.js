@@ -109,18 +109,6 @@ class TwitterOAuth extends Component {
     localStorage.setItem('userId', '5c9a70943a4fe02d9e6d95f2')
     TwitterOAuthHelper.getRedirectURL()
     .then(res => window.open(res.url))
-        
-    // axios.get('/twitter/token',{
-    //     proxy: {
-    //       host: 'http://localhost',
-    //       port: '3000'
-    //     }
-    // })
-    // .then(res => res.json())
-    // .then(res => {
-    //   window.open(res.url)
-    // })
-    
   }
   prevPage(){
     this.props.history.goBack();
