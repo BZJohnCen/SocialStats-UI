@@ -3,7 +3,7 @@ import GraphCard from '../components/GraphCard';
 import StatsCard from '../components/StatsCard';
 import { Container, Row, Col, Card, CardBody } from 'reactstrap';
 
-class DashboardTest extends Component<props> {
+class DashboardTest extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -53,7 +53,7 @@ class DashboardTest extends Component<props> {
         return (
             <div className='dash-container'>
                 <Container>
-                    <Row className='my-2'>
+                    <Row className='mb-3'>
 
                         {this.state.statsCardData.map((s, i) => <Col md={2} xs={12}>
                             <StatsCard props={s} />

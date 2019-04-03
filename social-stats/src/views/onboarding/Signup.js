@@ -117,11 +117,6 @@ class Signup extends Component {
       companyWebsite: this.state.companyWebsite,
       companyIndustry: this.state.companyIndustry
     })
-    .then(res => {
-      if (res.status == 201){
-        console.log('signup successful')
-      }
-    })
     .then(() => {
       AuthHelper.login({username: this.state.username, password: this.state.password})
       .then(res => {
