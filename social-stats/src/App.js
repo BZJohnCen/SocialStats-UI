@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router as HashRouter } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import SideBar from './components/SideBar';
 import RouteList from './routes/RouteList';
 import { ToastContainer } from 'react-toastify';

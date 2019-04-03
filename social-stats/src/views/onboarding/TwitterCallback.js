@@ -123,6 +123,7 @@ class TwitterCallback extends Component {
         //example params
         //oauth_token=abc&oauth_verifier=def
         const params = new URLSearchParams(this.props.location.search)
+        console.log('here')
         TwitterOAuthHelper.getCallback(params.get('oauth_token'), params.get('oauth_verifier'))
             .then(res => {
                 TwitterOAuthHelper.patchUserId(localStorage.getItem('userId'),{
