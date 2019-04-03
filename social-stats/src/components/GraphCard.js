@@ -24,7 +24,6 @@ class GraphCard extends Component<props> {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('nextProps', nextProps)
         const chartData = GraphHelper.convertObjArrToDataset(nextProps.props.chartData, 'date');
         this.setState({
             collection: nextProps.props.chartData ? chartData : [],
@@ -36,7 +35,6 @@ class GraphCard extends Component<props> {
     render() {
 
         const collection = this.state.collection;
-        console.log('crosshair', this.state.crosshairValues)
         return (
             <Card className='p-2'>
                 <CardBody>

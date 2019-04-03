@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import styled from '@emotion/styled';
 import { Container, Row, Form, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
+import TwitterOAuthHelper from '../../twitter_oauth';
+import { FETCH_TOKEN, setAuthVerified  } from '../../actions/index';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import  {requestTokenAction}  from '../../actions/index'
+import axios from 'axios';
 //styled components
 const OnboardingDiv = styled.div`
   /* height: 100%;
@@ -100,13 +105,30 @@ class TwitterOAuth extends Component {
 
     this.prevPage = this.prevPage.bind(this);
   }
-
+  twitterAuthHandler = () => {
+    localStorage.setItem('userId', '5c9a70943a4fe02d9e6d95f2')
+    TwitterOAuthHelper.getRedirectURL()
+    .then(res => window.open(res.url))
+        
+    // axios.get('/twitter/token',{
+    //     proxy: {
+    //       host: 'http://localhost',
+    //       port: '3000'
+    //     }
+    // })
+    // .then(res => res.json())
+    // .then(res => {
+    //   window.open(res.url)
+    // })
+    
+  }
   prevPage(){
     this.props.history.goBack();
   }
 
   render(){
-    return (
+    return ( this.props.authVerified ?
+      <div>{this.props.history.push('/dashtest')}</div> :
       <OnboardingDiv>
         <OnboardingContainer>
           <OnboardingContent>
@@ -115,6 +137,7 @@ class TwitterOAuth extends Component {
                 <ArrowButton onClick={this.prevPage}>
                   <svg id="backArrow" width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm-4.828 11.5l4.608 3.763-.679.737-6.101-5 6.112-5 .666.753-4.604 3.747h11.826v1h-11.828z"/></svg>
                 </ArrowButton>
+                  
               </div>
               <h2>Authorize Twitter</h2>
               {/*<div style={{position: 'absolute', right: '0px'}}>
@@ -125,7 +148,7 @@ class TwitterOAuth extends Component {
             </OnboardingHeader>
             <OnboardingForm>
               <Row style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}>
-                <AuthButton>
+                <AuthButton onClick={this.twitterAuthHandler}>
                   Sign in with Twitter
                   <TwitterLogo>
                     <svg id="twitterLogo" xmlns="http://www.w3.org/2000/svg" fill="#2D9CDB" width="30" height="30" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
@@ -145,4 +168,24 @@ class TwitterOAuth extends Component {
   }
 }
 
-export default TwitterOAuth;
+// export default TwitterOAuth;
+// function mapDispatchToProps(dispatch){
+//   return bindActionCreators({ FETCH_TOKEN }, dispatch);
+// }
+
+// function mapStateToProps ({ReducerToken}){
+//   return {ReducerToken};
+//   // any props you need else
+// }
+
+const mapStateToProps = (state) =>{
+  return {
+    reducerToken: state.twitterReducer.reducerToken,
+    authVerified: state.twitterReducer.authVerified
+  }
+}
+const mapDispatchToProps = dispatch => ({
+  requestTokenAction: () => dispatch(requestTokenAction())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TwitterOAuth);

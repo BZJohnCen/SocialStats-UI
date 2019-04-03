@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from '@emotion/styled';
 import { Container, Col, Row, Form, FormGroup, Label, Input, Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button } from 'reactstrap';
-import AuthHelper from '../../AuthHelper';
+import AuthHelper from '../../auth_helper'
 //styled components
 const SignupDiv = styled(Card)`
   // height: 100%;
@@ -101,9 +101,11 @@ class Signup extends Component {
       confirmPassword: '',
       companyName: '',
       companyWebsite: '',
-      companyIndustry: ''
+      companyIndustry: '',
+      nextPage: false
     }
-    this.handleSignup = this.handleSignup.bind(this)
+    this.handleSignup = this.handleSignup.bind(this);
+    this.prevPage = this.prevPage.bind(this);
   }
   handleSignup = () =>{
     AuthHelper.signup({
@@ -120,11 +122,19 @@ class Signup extends Component {
         console.log('signup successful')
       }
     })
+    .then(() => {
+      AuthHelper.login({username: this.state.username, password: this.state.password})
+      .then(res => {
+        console.log('res', res)
+        if (res.status == 200){
+          console.log('signup successful')
+          this.setState({nextPage: true})
+        }
+      })
+    })
     .catch(err => {
       console.log('username exists')
     })
-
-    this.prevPage = this.prevPage.bind(this);
   }
 
   prevPage(){
@@ -132,7 +142,8 @@ class Signup extends Component {
   }
 
   render(){
-    return (
+    return this.state.nextPage? 
+    <div>{this.props.history.push('/twitter')}</div>:
       <SignupDiv>
         <SignupContainer>
           <SignupContent>
@@ -231,7 +242,6 @@ class Signup extends Component {
           </SignupContent>
         </SignupContainer>
       </SignupDiv>
-    );
   }
 }
 

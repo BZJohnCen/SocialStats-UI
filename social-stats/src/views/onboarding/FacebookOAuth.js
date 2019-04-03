@@ -91,7 +91,7 @@ const FacebookLogo = styled.span`
 `;
 
 //main component
-class FacebookOAuth extends Component<props> {
+class FacebookOAuth extends Component {
   constructor(props){
     super(props);
     this.state = {

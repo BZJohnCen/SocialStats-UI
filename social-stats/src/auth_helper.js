@@ -1,20 +1,20 @@
 
-import axios from 'axios'
+import axios from './helpers/axios_proxy'
 const env = process.env.NODE_ENV || "development";
 const url = env === 'production' ? process.env.PROD_EXPRESS : process.env.DEV_EXPRESS;
 const dotEnv = require('dotenv').config();
-const BackendHelper = {
+
+const AuthHelper = {
 
     signup: (params) => {
         return new Promise((resolve,reject) => {
-            console.log(params)
             var keys = ['name']
             Object.keys(params).forEach(k => {
                 if(!params[k]) reject('Please fill out all fields')
             } )
             if(params['confirmPassword'] != params['password']) reject ("passwords don't match")
 
-            axios.post('http://localhost:3000/user', {
+            axios.post('/user', {
                 name: params.name,
                 username: params.username,
                 password: params.password,
@@ -39,11 +39,13 @@ const BackendHelper = {
                 if(!params[k]) reject('Please fill out all fields')
             } )
             
-            axios.post('http://localhost:3000/user/login', {
+            axios.post('/user/login', {
                 username: params.username,
                 password: params.password,
               })
               .then(res =>  {
+                localStorage.setItem("userId", res.data.uid)
+                localStorage.setItem("token", res.data.token)
                 resolve(res);
               })
               .catch(err => {
@@ -53,4 +55,4 @@ const BackendHelper = {
         })
     }
 }
-export default BackendHelper;
+export default AuthHelper;

@@ -10,7 +10,7 @@ import TwitterOAuth from '../views/onboarding/TwitterOAuth';
 import LinkedinOAuth from '../views/onboarding/LinkedinOAuth';
 import InstagramOAuth from '../views/onboarding/InstagramOAuth';
 import FacebookOAuth from '../views/onboarding/FacebookOAuth';
-
+import TwitterCallback from '../views/onboarding/TwitterCallback';
 const RouteList = () => (
   <Switch>
     <Route path='/login' component={Login} />
@@ -24,6 +24,7 @@ const RouteList = () => (
     <Route path='/linkedin' component={LinkedinOAuth} />
     <Route path='/instagram' component={InstagramOAuth} />
     <Route path='/facebook' component={FacebookOAuth} />
+    <Route path='/twitter_callback' component={TwitterCallback} />
   </Switch>
 )
 

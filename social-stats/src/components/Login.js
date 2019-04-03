@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from '@emotion/styled';
 import { Container, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import AuthHelper from '../AuthHelper';
+import AuthHelper from '../auth_helper'
 //styled components
 const LoginDiv = styled.div`
   /* height: 100%;

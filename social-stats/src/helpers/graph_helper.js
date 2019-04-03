@@ -34,7 +34,6 @@ const GraphHelper = {
                 data: objMapArr
             });
         })
-        console.log('allGraphs', allGraphs)
         return allGraphs
     }
 }
