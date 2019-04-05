@@ -130,8 +130,8 @@ class TwitterCallback extends Component {
             .then(res => {
                 TwitterOAuthHelper.patchUserId(localStorage.getItem('userId'), {
                     twitter: {
-                        access_token: res.access_token,
-                        token_secret: res.token_secret,
+                        accessToken: res.access_token,
+                        tokenSecret: res.token_secret,
                         // name: res.name,
                         name: 'shareteatoronto',
                         id: res.id
