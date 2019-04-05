@@ -18,8 +18,10 @@ import {
     connect
 } from 'react-redux';
 import TwitterOAuthHelper from '../../twitter_oauth';
+import SnapshotHelper from '../../helpers/snapshot_helper'
+import { toast } from 'react-toastify';
 //styled components
-const OnboardingDiv = styled.div `
+const OnboardingDiv = styled.div`
   /* height: 100%;
   width: inherit; */
   background: #00c6ff;  /* fallback for old browsers */
@@ -34,7 +36,7 @@ const OnboardingDiv = styled.div `
   z-index: 1;
 `;
 const OnboardingContainer = styled(Container)
-`
+    `
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,7 +44,7 @@ const OnboardingContainer = styled(Container)
   width: 50%;
   margin-top: -1.5em;
 `;
-const OnboardingContent = styled.div `
+const OnboardingContent = styled.div`
   border: 1px solid #ccc !important;
   border-radius: 1em;
   padding: 1em 3em 1em 3em;
@@ -52,7 +54,7 @@ const OnboardingContent = styled.div `
             box-shadow: 0 10px 6px -6px #777;
   background-color: #f9f9f9;
 `;
-const OnboardingHeader = styled.div `
+const OnboardingHeader = styled.div`
   display: flex;
   flex-direction:row;
   position: relative;
@@ -63,7 +65,7 @@ const OnboardingHeader = styled.div `
   margin: 2em 0em 1em 0em;
 `;
 const OnboardingForm = styled(Form)
-`
+    `
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -71,7 +73,7 @@ const OnboardingForm = styled(Form)
   margin: 6em 0em 8em 0em;
 `;
 const AuthButton = styled(Button)
-`
+    `
   background-color: transparent;
   border-radius: 0.7em;
   width: fit-content;
@@ -93,7 +95,7 @@ const AuthButton = styled(Button)
     }
   }
 `;
-const ArrowButton = styled.button `
+const ArrowButton = styled.button`
   background: none;
   border: none;
 
@@ -104,7 +106,7 @@ const ArrowButton = styled.button `
     outline: 0;
   }
 `;
-const FacebookLogo = styled.span `
+const FacebookLogo = styled.span`
   padding: 0em 0em 0em 1em;
 `;
 
@@ -123,21 +125,25 @@ class TwitterCallback extends Component {
         //example params
         //oauth_token=abc&oauth_verifier=def
         const params = new URLSearchParams(this.props.location.search)
-        console.log('here')
+        const handle = 'shareteatoronto';
         TwitterOAuthHelper.getCallback(params.get('oauth_token'), params.get('oauth_verifier'))
             .then(res => {
-                TwitterOAuthHelper.patchUserId(localStorage.getItem('userId'),{
-                    twitter: { 
+                TwitterOAuthHelper.patchUserId(localStorage.getItem('userId'), {
+                    twitter: {
                         access_token: res.access_token,
                         token_secret: res.token_secret,
-                        name: res.name,
+                        // name: res.name,
+                        name: 'shareteatoronto',
                         id: res.id
                     }
                 })
-                .then(db => {
-                    this.props.setAuthVerified()
-                    window.close()
-                })
+                    .then(db => {
+                        this.props.setAuthVerified()
+                    })
+                    .then(() => {
+                        SnapshotHelper.initializeDailySnapshots(localStorage.getItem('userId'), handle)
+                        window.close()
+                    })
             })
 
     }
@@ -148,15 +154,15 @@ class TwitterCallback extends Component {
 
     render() {
         // window.opener.location.reload()
-        return ( <OnboardingDiv >
+        return (<OnboardingDiv >
             <OnboardingContainer >
-            <OnboardingContent >
+                <OnboardingContent >
 
 
-            
-            </OnboardingContent> 
-            </OnboardingContainer> 
-            </OnboardingDiv>
+
+                </OnboardingContent>
+            </OnboardingContainer>
+        </OnboardingDiv>
         );
     }
 }

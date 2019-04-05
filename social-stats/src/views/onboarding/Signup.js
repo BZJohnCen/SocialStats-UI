@@ -118,14 +118,14 @@ class Signup extends Component {
       AuthHelper.login({username: this.state.username, password: this.state.password})
       .then(res => {
         console.log('res', res)
-        if (res.status == 200){
-          console.log('signup successful')
-          this.setState({nextPage: true})
+        if (res.status === 200){
+          console.log('signup and login successful')
+          this.setState({ nextPage: true })
         }
       })
     })
     .catch(err => {
-      console.log('username exists')
+      console.log('signup failed/username exists')
     })
   }
 

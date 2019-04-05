@@ -106,7 +106,7 @@ class TwitterOAuth extends Component {
     this.prevPage = this.prevPage.bind(this);
   }
   twitterAuthHandler = () => {
-    localStorage.setItem('userId', '5c9a70943a4fe02d9e6d95f2')
+    console.log("twitter auth handler")
     TwitterOAuthHelper.getRedirectURL()
     .then(res => window.open(res.url))
   }
