@@ -4,7 +4,7 @@ import { Row, Col, CardBody, Card, FormGroup, Input, Label, Spinner, Button, Unc
 import { FlexibleWidthXYPlot, XAxis, Crosshair, LineMarkSeries, DiscreteColorLegend } from 'react-vis';
 import GraphHelper from '../helpers/graph_helper'
 
-class GraphCard extends Component<props> {
+class GraphCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
