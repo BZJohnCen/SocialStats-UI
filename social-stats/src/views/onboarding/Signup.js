@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
-import { Container, Col, Row, Form, FormGroup, Label, Input, Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
-import AuthHelper from '../../auth_helper'
+import { Container, Col, Row, Form, FormGroup, Label, Input, Card, Button } from 'reactstrap';
+import AuthHelper from '../../auth_helper';
 //styled components
 const SignupDiv = styled(Card)`
   // height: 100%;
@@ -87,14 +86,11 @@ const ArrowButton = styled.button`
 `;
 //functions
 
-
-
 //main component
 class Signup extends Component {
   constructor(props){
     super(props);
     this.state = {
-      default: true,
       name: '',
       password: '',
       username: '',
@@ -107,6 +103,7 @@ class Signup extends Component {
     this.handleSignup = this.handleSignup.bind(this);
     this.prevPage = this.prevPage.bind(this);
   }
+
   handleSignup = () =>{
     AuthHelper.signup({
       name: this.state.name,
@@ -137,7 +134,7 @@ class Signup extends Component {
   }
 
   render(){
-    return this.state.nextPage? 
+    return this.state.nextPage?
     <div>{this.props.history.push('/twitter')}</div>:
       <SignupDiv>
         <SignupContainer>
@@ -182,7 +179,7 @@ class Signup extends Component {
                       type="url"
                       name="companyWebsite"
                       id="companyWebsite"
-                      // value="https://"
+                      defaultValue="https://"
                     />
                   </FormGroup>
 
