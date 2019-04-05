@@ -67,6 +67,7 @@ const CustomInput = styled(Input)`
 `;
 const SubmitButton = styled(Button)`
   background-color: transparent;
+  border-color: #6c757d !important;
   border-radius: 0.7em;
   width: 75%;
   height: 2.5em;
@@ -78,14 +79,14 @@ const SubmitButton = styled(Button)`
 
   :hover{
     background-color: #2D9CDB;
-    border-color: transparent;
+    border-color: transparent !important;
   }
 `;
 const SignupButton =styled(SubmitButton)`
   margin-top: 0.2em;
   width: 90%;
   :hover{
-    background-color: #74EBA7;
+    background-color: #6FCF97;
   }
 `;
 
