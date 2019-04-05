@@ -30,7 +30,7 @@ const AuthHelper = {
                 companyWebsite: params.companyWebsite,
                 companyIndustry: params.companyIndustry
             }
-            fetch('/user', {
+            fetch('/api/user', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ const AuthHelper = {
               username: params.username,
               password: params.password,
             }
-            fetch('/user/login', {
+            fetch('/api/user/login', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'

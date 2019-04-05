@@ -3,7 +3,7 @@ const TwitterOAuthHelper = {
 
     getRedirectURL: () => {
         console.log('right here')
-        return fetch('/twitter/token', {
+        return fetch('/api/twitter/token', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -11,7 +11,7 @@ const TwitterOAuthHelper = {
         .then(res => res.json())
     },
     patchUserId: (uid, body) => {
-        return fetch(`/user/${uid}`, {
+        return fetch(`/api/user/${uid}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -20,7 +20,7 @@ const TwitterOAuthHelper = {
         }).then(res => res.json())
     },
     getCallback: (oauth_token, oauth_verifier ) => {
-        return fetch(`/twitter/callback?oauth_token=${oauth_token}&oauth_verifier=${oauth_verifier}`)
+        return fetch(`/api/twitter/callback?oauth_token=${oauth_token}&oauth_verifier=${oauth_verifier}`)
         .then(res => res.json())
     }
 

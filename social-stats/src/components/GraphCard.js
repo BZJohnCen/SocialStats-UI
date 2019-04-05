@@ -63,7 +63,7 @@ class GraphCard extends Component<props> {
                         </PopoverBody>
                     </UncontrolledPopover>
                     <Row>
-                        <DiscreteColorLegend orientation='horizontal' items={collection.map((d, i) => { return { color: d.color, title: i + ': ' + d.yTitle } })} />
+                        <DiscreteColorLegend orientation='horizontal' items={collection.filter(d => d.visible).map((d, i) => { return { color: d.color, title: i + ': ' + d.yTitle } })} />
                         {
                             this.state.loading ?
                                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -81,7 +81,7 @@ class GraphCard extends Component<props> {
                                                 color={d.color}
                                                 onNearestX={(v, { index }) => {
                                                     if (i === 0)
-                                                        this.setState({ crosshairValues: collection.map(set => set.data[index]) })
+                                                        this.setState({ crosshairValues: collection.filter(d => d.visible).map(set => set.data[index]) })
                                                 }}
                                                 curve={'curveMonotoneX'}
                                                 animation

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GraphCard from '../components/GraphCard';
 import StatsCard from '../components/StatsCard';
 import { Container, Row, Col, Card, CardBody } from 'reactstrap';
+import SnapshotHelper from '../helpers/snapshot_helper'
 
 class DashboardTest extends Component {
     constructor(props) {
@@ -39,14 +40,13 @@ class DashboardTest extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:3000/test/snapshots', {
-            method: 'GET',
-            'Content-Type': 'application/json'
-        })
-            .then(res => res.json())
-            .then(res => {
-                this.setState({ fetchRes: res.response })
-            })
+        const uid = localStorage.getItem("userId")
+        if (uid)
+            SnapshotHelper.getDailySnapshots(uid)
+                .then(res => {
+                    console.log('res', res);
+                    this.setState({ fetchRes: res.response })
+                })
     }
 
     render() {
