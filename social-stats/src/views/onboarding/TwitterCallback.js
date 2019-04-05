@@ -128,11 +128,16 @@ class TwitterCallback extends Component {
         const handle = 'shareteatoronto';
         TwitterOAuthHelper.getCallback(params.get('oauth_token'), params.get('oauth_verifier'))
             .then(res => {
+              console.log({
+                accessToken: res.access_token,
+                        tokenSecret: res.token_secret,
+                        name: 'shareteatoronto',
+                        id: res.id
+              })
                 TwitterOAuthHelper.patchUserId(localStorage.getItem('userId'), {
                     twitter: {
-                        access_token: res.access_token,
-                        token_secret: res.token_secret,
-                        // name: res.name,
+                        accessToken: res.access_token,
+                        tokenSecret: res.token_secret,
                         name: 'shareteatoronto',
                         id: res.id
                     }
