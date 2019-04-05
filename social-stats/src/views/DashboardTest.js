@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import GraphCard from '../components/GraphCard';
 import StatsCard from '../components/StatsCard';
 import { Container, Row, Col, Card, CardBody } from 'reactstrap';
-
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 class DashboardTest extends Component {
     constructor(props) {
         super(props);
+        this.toggle = this.toggle.bind(this);
         this.state = {
+            dropdownOpen: false,
             default: true,
             fetchRes: null,
             statsCardData: [
@@ -48,7 +50,11 @@ class DashboardTest extends Component {
                 this.setState({ fetchRes: res.response })
             })
     }
-
+    toggle() {
+        this.setState(prevState => ({
+          dropdownOpen: !prevState.dropdownOpen
+        }));
+    }
     render() {
         return (
             <div className='dash-container'>
@@ -66,10 +72,20 @@ class DashboardTest extends Component {
                         <Col md={4} xs={12}>
                             <Card>
                                 <CardBody>
-                                    <h3>Most retweeted</h3>
+                                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                    <DropdownToggle caret>
+                                    Dropdown
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                    <DropdownItem>Foo Action</DropdownItem>
+                                    <DropdownItem>Bar Action</DropdownItem>
+                                    <DropdownItem>Quo Action</DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown>
+                                    {/* <h3>Most retweeted</h3>
                                     <p>
                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                    </p>
+                                    </p> */}
                                 </CardBody>
                             </Card>
                         </Col>

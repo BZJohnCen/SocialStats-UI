@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardBody } from 'reactstrap';
 
-class StatsCard extends Component<props> {
+class StatsCard extends Component {
     constructor(props) {
         super(props)
 

@@ -17,7 +17,7 @@ const Navlink = styled(NavLink)`
   align-items: center;
 `;
 
-class SideBar extends Component<props>{
+class SideBar extends Component{
   constructor(props){
     super(props)
     this.state = {
