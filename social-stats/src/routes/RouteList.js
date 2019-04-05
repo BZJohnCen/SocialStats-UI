@@ -11,25 +11,25 @@ import LinkedinOAuth from '../views/onboarding/LinkedinOAuth';
 import InstagramOAuth from '../views/onboarding/InstagramOAuth';
 import FacebookOAuth from '../views/onboarding/FacebookOAuth';
 import TwitterCallback from '../views/onboarding/TwitterCallback';
+
 const RouteList = () => (
   <Switch>
     <Route path='/login' component={Login} />
-    {/*<Route path='/' component={SideBar} />*/}
-    <PrivateRoute exact path='/' component={Home} />
-    <Route path='/test' component={Signup} />
-    <Route path='/dashtest' component={DashboardTest} />
-    <Route path='/twitter' component={TwitterOAuth} />
     <Route path='/signup' component={Signup} />
-    <Route path='/test' component={Test} />
-    <Route path='/linkedin' component={LinkedinOAuth} />
-    <Route path='/instagram' component={InstagramOAuth} />
-    <Route path='/facebook' component={FacebookOAuth} />
-    <Route path='/twitter_callback' component={TwitterCallback} />
+    <PrivateRoute exact path='/' component={Home} />
+    <PrivateRoute path='/dashtest' component={DashboardTest} />
+    <PrivateRoute path='/twitter' component={TwitterOAuth} />
+    <PrivateRoute path='/test' component={Test} />
+    <PrivateRoute path='/linkedin' component={LinkedinOAuth} />
+    <PrivateRoute path='/instagram' component={InstagramOAuth} />
+    <PrivateRoute path='/facebook' component={FacebookOAuth} />
+    <PrivateRoute path='/twitter_callback' component={TwitterCallback} />
   </Switch>
 )
 
 const isAuthenticated = () => {
   //insert our client-side auth
+  return localStorage.getItem("token") ? true : false;
 }
 
 const PrivateRoute = ({ component: Component, path, otherProps }) => (

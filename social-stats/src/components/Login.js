@@ -100,18 +100,18 @@ class Login extends Component {
     }
     this.handleLogin = this.handleLogin.bind(this)
   }
-handleLogin = () => {
-  AuthHelper.login({
-    username: this.state.username,
-    password: this.state.password
-  })
-  .then(res => {
-    console.log(res)
-  })
-  .catch(err => {
-    console.log(err)
-  })
-}
+
+  handleLogin = () => {
+    AuthHelper.login({
+      username: this.state.username,
+      password: this.state.password
+    }).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+
   render(){
     return (
       <LoginDiv>
@@ -124,22 +124,23 @@ handleLogin = () => {
             <LoginForm>
               <Col>
                 <FormGroup>
-                  <Label>Username</Label>
+                  <Label for="loginUsername">Username</Label>
                   <CustomInput
                     onChange = {e => this.setState({username: e.target.value})}
+                    id="loginUsername"
                     placeholder="username"
                   />
                 </FormGroup>
               </Col>
               <Col>
                 <FormGroup>
-                  <Label for="examplePassword">Password</Label>
+                  <Label for="loginPassword">Password</Label>
                   <CustomInput
                     onChange = {e => this.setState({password: e.target.value})}
                     type="password"
                     name="password"
-                    id="examplePassword"
-                    placeholder="password"
+                    id="loginPassword"
+                    placeholder="*******"
                   />
                 </FormGroup>
               </Col>

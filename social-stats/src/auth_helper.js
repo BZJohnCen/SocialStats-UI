@@ -5,7 +5,6 @@ const url = env === 'production' ? process.env.PROD_EXPRESS : process.env.DEV_EX
 const dotEnv = require('dotenv').config();
 
 const AuthHelper = {
-  
     signup: (params) => {
       // const inst = axios.create({
       //   proxy: {
@@ -13,13 +12,13 @@ const AuthHelper = {
       //     port: 3000
       //   }
       // });
-      
+
         return new Promise((resolve,reject) => {
             var keys = ['name']
             Object.keys(params).forEach(k => {
                 if(!params[k]) reject('Please fill out all fields')
             } )
-            if(params['confirmPassword'] != params['password']) 
+            if(params['confirmPassword'] != params['password'])
               reject ("passwords don't match")
             else{
               var body = {
@@ -41,7 +40,7 @@ const AuthHelper = {
                 reject(err);
               });
             }
-           
+
         })
     },
     login: (params) => {
@@ -66,8 +65,8 @@ const AuthHelper = {
                   localStorage.setItem("token", json.token)
                   resolve(res);
                 })
-                
-                
+
+
               })
               .catch(err => {
                 reject(err);
@@ -76,4 +75,5 @@ const AuthHelper = {
         })
     }
 }
+
 export default AuthHelper;
