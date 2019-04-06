@@ -13,7 +13,7 @@ const COLORS = [
 
 const GraphHelper = {
     convertObjArrToDataset: (objArr, xAxis) => {
-
+        
         if (objArr.length <= 0)
             return [];
 

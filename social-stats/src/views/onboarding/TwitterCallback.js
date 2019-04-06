@@ -140,8 +140,20 @@ class TwitterCallback extends Component {
           .then(() => {
             console.log('about to init snapshots')
             console.log(localStorage.getItem('userId'), handle)
-            SnapshotHelper.initializeDailySnapshots(localStorage.getItem('userId'), handle)
-              .then(() => {
+            // SnapshotHelper.initializeWeeklySnapshots(localStorage.getItem('userId'), handle)
+            //   .then(res => {
+            //     SnapshotHelper.initializeWeeklySnapshots(localStorage.getItem('userId'), handle)
+            //       .then(results => {
+            //         console.log(results, 'results')
+            //       })
+            //   })
+            var snapshotPromises = [
+              SnapshotHelper.initializeDailySnapshots(localStorage.getItem('userId'), handle),
+              SnapshotHelper.initializeWeeklySnapshots(localStorage.getItem('userId'), handle)
+            ]
+            Promise.all(snapshotPromises).then(() => {
+              //SnapshotHelper.getWeeklySnapshots(localStorage.getItem('userId'))
+                //.then(results => console.log(results, 'results'))
                 this.props.setAuthVerified()
                 window.close()
               })
