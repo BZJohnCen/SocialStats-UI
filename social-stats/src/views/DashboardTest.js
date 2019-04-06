@@ -47,7 +47,6 @@ class DashboardTest extends Component {
         if (uid)
             SnapshotHelper.getDailySnapshots(uid)
                 .then(res => {
-                    console.log('res', res);
                     this.setState({ fetchRes: res.response })
                 })
     }
@@ -66,11 +65,13 @@ class DashboardTest extends Component {
                             <StatsCard props={s} />
                         </Col>)}
                     </Row>
-                    <Row>
-                        <Col md={8} xs={12}>
+                    <Row className='mb-3'>
+                        <Col md={12} xs={12}>
                             <GraphCard props={{ chartData: this.state.fetchRes }}></GraphCard>
                         </Col>
-                        <Col md={4} xs={12}>
+                    </Row>
+                    <Row>
+                        <Col md={12} xs={12}>
                             <Card>
                                 <CardBody>
                                     <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
