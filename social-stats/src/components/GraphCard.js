@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 import { Row, Col, CardBody, Card, FormGroup, Input, Label, Spinner, Button, UncontrolledPopover, PopoverBody } from 'reactstrap';
 import { FlexibleWidthXYPlot, XAxis, Crosshair, LineMarkSeries, DiscreteColorLegend } from 'react-vis';
 import GraphHelper from '../helpers/graph_helper'
+import { Range } from 'rc-slider';
+import _ from 'lodash'
 
 class GraphCard extends Component {
     constructor(props) {
@@ -11,7 +13,9 @@ class GraphCard extends Component {
             default: true,
             collection: [],
             crosshairValues: [],
-            loading: true
+            loading: true,
+            allDates: [],
+
         }
     }
 
@@ -25,14 +29,23 @@ class GraphCard extends Component {
 
     componentWillReceiveProps(nextProps) {
         const chartData = GraphHelper.convertObjArrToDataset(nextProps.props.chartData, 'date');
+        const maxDate = Math.max(...chartData.map(d => d.data.length))
         this.setState({
             collection: nextProps.props.chartData ? chartData : [],
-            loading: false
+            max: maxDate,
+            bounds: [maxDate - 20, maxDate],
+            loading: false,
         })
     }
 
+    changeRange = _.throttle(e => {
+        console.log('e', e)
+        this.setState({ bounds: e })
+    }, 500)
 
     render() {
+
+        _.throttle(() => { }, 500)
 
         const collection = this.state.collection;
         return (
@@ -42,7 +55,10 @@ class GraphCard extends Component {
                         <Col>
                             <h3>Your Snapshots</h3>
                         </Col>
-                        <Col md={6} >
+                        <Col md={6}>
+                            <Range value={this.state.bounds} max={this.state.max} onChange={this.changeRange} />
+                        </Col>
+                        <Col md={3} >
                             <Button color='primary' className='mr-2' size='small' id='optionsPop'>Options</Button>
                             <Button color='secondary' size='small'>Download .CSV</Button>
                         </Col>
@@ -71,18 +87,28 @@ class GraphCard extends Component {
                                 </div> :
                                 <FlexibleWidthXYPlot
                                     xType='time'
-                                    onMouseLeave={() => this.setState({ crosshairValues: [] })}
+                                    onMouseLeave={() => _.throttle(() => this.setState({ crosshairValues: [] }), 100)}
                                     height={300}>
                                     <XAxis />
                                     {
-                                        collection.filter(d => d.visible).map((d, i) => {
+                                        collection.filter(d => d.visible).map(d => {
+                                            return {
+                                                ...d,
+                                                data: d.data.slice(this.state.bounds[0], this.state.bounds[1] + 1)
+                                            }
+                                        }).map((d, i) => {
                                             return <LineMarkSeries
                                                 key={i}
                                                 color={d.color}
-                                                onNearestX={(v, { index }) => {
+                                                onNearestX={_.throttle((v, { index }) => {
                                                     if (i === 0)
-                                                        this.setState({ crosshairValues: collection.filter(d => d.visible).map(set => set.data[index]) })
-                                                }}
+                                                        this.setState({ crosshairValues: collection.filter(d => d.visible).map(d => {
+                                                            return {
+                                                                ...d,
+                                                                data: d.data.slice(this.state.bounds[0], this.state.bounds[1] + 1)
+                                                            }
+                                                        }).map(set => set.data[index]) })
+                                                }, 100)}
                                                 curve={'curveMonotoneX'}
                                                 animation
                                                 data={d.data} />

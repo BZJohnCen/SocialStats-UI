@@ -8,6 +8,7 @@ import '../node_modules/react-vis/dist/style.css';
 import { Provider } from 'react-redux'
 import configureStore from './store';
 import 'react-toastify/dist/ReactToastify.css';
+import 'rc-slider/assets/index.css';
 class App extends Component {
   render() {
     return (
