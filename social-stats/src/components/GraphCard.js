@@ -31,10 +31,11 @@ class GraphCard extends Component {
         if (nextProps.props.chartData) {
             const chartData = GraphHelper.convertObjArrToDataset(nextProps.props.chartData, 'date');
             const maxDate = Math.max(...chartData.map(d => d.data.length))
+            const lowerBound = maxDate - 20 <=0? 0 : maxDate - 20
             this.setState({
                 collection: nextProps.props.chartData ? chartData : [],
                 max: maxDate,
-                bounds: [maxDate - 20, maxDate],
+                bounds: [lowerBound, maxDate],
                 loading: false,
             })
         }
