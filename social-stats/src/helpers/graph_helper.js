@@ -13,19 +13,22 @@ const COLORS = [
 
 const GraphHelper = {
     convertObjArrToDataset: (objArr, xAxis) => {
+        
+        if (objArr.length <= 0)
+            return [];
 
         var allY = Object.keys(objArr[0]);
         var allGraphs = [];
         allY.splice(allY.indexOf(xAxis), 1)
 
         allY.forEach(y => {
-            var objMapArr = objArr.map(obj => {
+            var objMapArr = objArr.filter(obj => moment().subtract(1, 'year').unix() <= moment(obj[xAxis]).unix()).map(obj => {
                 return {
                     x: xAxis === 'date' ? moment(obj[xAxis]).toDate() : obj[xAxis],
                     y: obj[y],
                 }
             })
-            objMapArr.sort((a, b) => moment(b.x).unix() - moment(a.x).unix());
+            objMapArr.sort((a, b) => moment(a.x).unix() - moment(b.x).unix());
             allGraphs.push({
                 yTitle: y,
                 xTitle: xAxis,
