@@ -29,7 +29,7 @@ const RouteList = () => (
 
 const isAuthenticated = () => {
   //insert our client-side auth
-  return localStorage.getItem("token") ? true : false;
+  return (localStorage.getItem("token") && localStorage.getItem("token") !== 'undefined') ? true : false;
 }
 
 const PrivateRoute = ({ component: Component, path, otherProps }) => (

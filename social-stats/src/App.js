@@ -27,7 +27,6 @@ class App extends Component {
               draggable
               pauseOnHover
             />
-            {/*<SideBar />*/}
             <RouteList />
           </div>
         </div>
