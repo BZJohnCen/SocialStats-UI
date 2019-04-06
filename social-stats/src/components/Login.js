@@ -102,12 +102,14 @@ class Login extends Component {
     this.handleLogin = this.handleLogin.bind(this)
   }
 
-  handleLogin = () => {
+  handleLogin(e){
+    e.preventDefault();
     AuthHelper.login({
       username: this.state.username,
       password: this.state.password
     }).then(res => {
       console.log(res)
+      this.props.history.push('/');
     }).catch(err => {
       console.log(err)
     })
@@ -146,7 +148,7 @@ class Login extends Component {
                 </FormGroup>
               </Col>
               <div style={{margin: '0.7em'}}></div>
-              <SubmitButton onClick={e => { e.preventDefault(); this.handleLogin(e) }}>Login</SubmitButton>
+              <SubmitButton onClick={this.handleLogin}>Login</SubmitButton>
               <Link to="/signup" style={{ width: '84%'}}><SignupButton>Sign Up</SignupButton></Link>
             </LoginForm>
           </LoginContent>

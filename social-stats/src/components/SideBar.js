@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Button } from 'reactstrap';
 // import { withRouter } from 'react-router';
 
 const SidebarDiv = styled.div`
@@ -8,6 +8,7 @@ const SidebarDiv = styled.div`
   width: 15%;
   background-color: #343a40;
   transition: transform 0.3s ease-in-out;
+  padding-top: 0.3em;
 `;
 const Sidebar = styled(Navbar)`
   height: auto;
@@ -16,6 +17,10 @@ const Navlink = styled(NavLink)`
   justify-content: center;
   align-items: center;
 `;
+const LogoutButton = styled(Button)`
+  margin-top: 2em;
+  width: 70%;
+`;
 
 class SideBar extends Component{
   constructor(props){
@@ -23,14 +28,20 @@ class SideBar extends Component{
     this.state = {
       isOpen: false
     }
-
     this.toggleSideNav = this.toggleSideNav.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   toggleSideNav(){
     this.setState({
       isOpen: !this.state.isOpen
     });
+  }
+  handleLogout(e){
+    e.preventDefault();
+    localStorage.removeItem("userId");
+    localStorage.removeItem("token");
+    window.location.reload();
   }
 
   render(){
@@ -44,8 +55,9 @@ class SideBar extends Component{
       <SidebarDiv id="sideBar" className={visible}>
         <Sidebar color="faded" dark className='bg-dark'>
           <NavbarBrand href="/" className="mr-auto">SocialStats</NavbarBrand>
-          <NavbarToggler onClick={this.toggleSideNav} className="mr-2" />
+          <NavbarToggler id="navToggle" onClick={this.toggleSideNav} className="mr-2" />
           <Collapse isOpen={this.state.isOpen} navbar>
+            <div style={{ paddingTop: '1em', paddingBottom: '1em'}}>
             <Nav navbar>
               <NavItem>
                 <Navlink href="/current">
@@ -59,7 +71,9 @@ class SideBar extends Component{
               <NavItem>
                 <Navlink href="/test">Test</Navlink>
               </NavItem>
+              <LogoutButton onClick={this.handleLogout}>Log out</LogoutButton>
             </Nav>
+            </div>
           </Collapse>
         </Sidebar>
       </SidebarDiv>

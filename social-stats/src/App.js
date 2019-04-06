@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <Router>
         <div className='App'>
-          <SideBar />
+          <SideBar history={this.props.history} />
           <div className='App-Content'>
             <ToastContainer
               position="top-center"
@@ -26,7 +26,6 @@ class App extends Component {
               draggable
               pauseOnHover
             />
-            {/*<SideBar />*/}
             <RouteList />
           </div>
         </div>

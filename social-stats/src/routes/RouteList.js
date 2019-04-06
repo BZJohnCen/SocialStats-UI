@@ -16,7 +16,7 @@ const RouteList = () => (
   <Switch>
     <Route path='/login' component={Login} />
     <Route path='/signup' component={Signup} />
-    <Route exact path='/' component={Home} />
+    <PrivateRoute exact path='/' component={Home} />
     <PrivateRoute path='/dashtest' component={DashboardTest} />
     <PrivateRoute path='/twitter' component={TwitterOAuth} />
     <PrivateRoute path='/test' component={Test} />
