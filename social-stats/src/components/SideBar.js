@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Button } from 'reactstrap';
-// import { withRouter } from 'react-router';
+import { withRouter } from 'react-router';
 
 const SidebarDiv = styled.div`
   height: 100%;
@@ -41,7 +41,8 @@ class SideBar extends Component{
     e.preventDefault();
     localStorage.removeItem("userId");
     localStorage.removeItem("token");
-    window.location.reload();
+    // window.location.reload();
+    this.props.history.push('/login');
   }
 
   render(){
@@ -82,4 +83,4 @@ class SideBar extends Component{
 }
 
 
-export default SideBar;
+export default withRouter(SideBar);

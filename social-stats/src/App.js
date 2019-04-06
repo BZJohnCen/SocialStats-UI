@@ -8,12 +8,13 @@ import '../node_modules/react-vis/dist/style.css';
 import { Provider } from 'react-redux'
 import configureStore from './store';
 import 'react-toastify/dist/ReactToastify.css';
+
 class App extends Component {
   render() {
     return (
       <Router>
         <div className='App'>
-          <SideBar history={this.props.history} />
+          <SideBar />
           <div className='App-Content'>
             <ToastContainer
               position="top-center"
