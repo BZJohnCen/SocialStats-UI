@@ -124,9 +124,14 @@ class TwitterCallback extends Component {
   componentDidMount() {
     //example params
     //oauth_token=abc&oauth_verifier=def
-    const params = new URLSearchParams(this.props.location.search)
+
+    var url = window.location.href;
+    url = url.split('=');
+    url[1] = url[1].split('&')[0]
+    url[2] = url[2].split('#')[0]
+    console.log(url[1], url[2], 'URLS')
     const handle = 'ChatimeCanada';
-    TwitterOAuthHelper.getCallback(params.get('oauth_token'), params.get('oauth_verifier'))
+    TwitterOAuthHelper.getCallback(url[1], url[2])
       .then(res => {
         TwitterOAuthHelper.patchUserId(localStorage.getItem('userId'), {
           twitter: {
@@ -152,6 +157,7 @@ class TwitterCallback extends Component {
               SnapshotHelper.initializeWeeklySnapshots(localStorage.getItem('userId'), handle)
             ]
             Promise.all(snapshotPromises).then(() => {
+              
               //SnapshotHelper.getWeeklySnapshots(localStorage.getItem('userId'))
                 //.then(results => console.log(results, 'results'))
                 this.props.setAuthVerified()
