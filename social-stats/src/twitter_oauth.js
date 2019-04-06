@@ -2,7 +2,6 @@ import axios from 'axios';
 const TwitterOAuthHelper = {
 
     getRedirectURL: () => {
-        console.log('right here')
         return fetch('/api/twitter/token', {
             method: 'GET',
             headers: {
