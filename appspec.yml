@@ -13,8 +13,8 @@ permissions:
       - file
 hooks:
   BeforeInstall:
-    - location: scripts/packageInstall.sh
+    - location: social-stats/scripts/packageInstall.sh
       timeout: 300
   AfterInstall:
-    - location: scripts/build.sh
+    - location: social-stats/scripts/build.sh
       timeout: 300
