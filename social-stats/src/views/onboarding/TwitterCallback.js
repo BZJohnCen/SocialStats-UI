@@ -1,21 +1,21 @@
 import React, {
-    Component
+  Component
 } from 'react';
 import styled from '@emotion/styled';
 import {
-    Container,
-    Row,
-    Form,
-    Button
+  Container,
+  Row,
+  Form,
+  Button
 } from 'reactstrap';
 import {
-    Link
+  Link
 } from 'react-router-dom';
 import {
-    setAuthVerified
+  setAuthVerified
 } from '../../actions/index'
 import {
-    connect
+  connect
 } from 'react-redux';
 import TwitterOAuthHelper from '../../twitter_oauth';
 import SnapshotHelper from '../../helpers/snapshot_helper'
@@ -36,7 +36,7 @@ const OnboardingDiv = styled.div`
   z-index: 1;
 `;
 const OnboardingContainer = styled(Container)
-    `
+  `
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -65,7 +65,7 @@ const OnboardingHeader = styled.div`
   margin: 2em 0em 1em 0em;
 `;
 const OnboardingForm = styled(Form)
-    `
+  `
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -73,7 +73,7 @@ const OnboardingForm = styled(Form)
   margin: 6em 0em 8em 0em;
 `;
 const AuthButton = styled(Button)
-    `
+  `
   background-color: transparent;
   border-radius: 0.7em;
   width: fit-content;
@@ -112,66 +112,63 @@ const FacebookLogo = styled.span`
 
 //main component
 class TwitterCallback extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            default: true
-        }
-
-        this.prevPage = this.prevPage.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {
+      default: true
     }
 
-    componentDidMount() {
-        //example params
-        //oauth_token=abc&oauth_verifier=def
-        const params = new URLSearchParams(this.props.location.search)
-        const handle = 'shareteatoronto';
-        TwitterOAuthHelper.getCallback(params.get('oauth_token'), params.get('oauth_verifier'))
-            .then(res => {
-              console.log({
-                accessToken: res.access_token,
-                        tokenSecret: res.token_secret,
-                        name: 'shareteatoronto',
-                        id: res.id
+    this.prevPage = this.prevPage.bind(this);
+  }
+
+  componentDidMount() {
+    //example params
+    //oauth_token=abc&oauth_verifier=def
+    const params = new URLSearchParams(this.props.location.search)
+    const handle = 'ChatimeCanada';
+    TwitterOAuthHelper.getCallback(params.get('oauth_token'), params.get('oauth_verifier'))
+      .then(res => {
+        TwitterOAuthHelper.patchUserId(localStorage.getItem('userId'), {
+          twitter: {
+            accessToken: res.access_token,
+            tokenSecret: res.token_secret,
+            // name: res.name,
+            name: 'ChatimeCanada',
+            id: res.id
+          }
+        })
+          .then(() => {
+            console.log('about to init snapshots')
+            console.log(localStorage.getItem('userId'), handle)
+            SnapshotHelper.initializeDailySnapshots(localStorage.getItem('userId'), handle)
+              .then(() => {
+                this.props.setAuthVerified()
+                window.close()
               })
-                TwitterOAuthHelper.patchUserId(localStorage.getItem('userId'), {
-                    twitter: {
-                        accessToken: res.access_token,
-                        tokenSecret: res.token_secret,
-                        name: 'shareteatoronto',
-                        id: res.id
-                    }
-                })
-                    .then(db => {
-                        this.props.setAuthVerified()
-                    })
-                    .then(() => {
-                        SnapshotHelper.initializeDailySnapshots(localStorage.getItem('userId'), handle)
-                        window.close()
-                    })
-            })
+          })
+      })
 
-    }
+  }
 
-    prevPage() {
-        this.props.history.goBack();
-    }
+  prevPage() {
+    this.props.history.goBack();
+  }
 
-    render() {
-        // window.opener.location.reload()
-        return (<OnboardingDiv >
-            <OnboardingContainer >
-                <OnboardingContent >
+  render() {
+    // window.opener.location.reload()
+    return (<OnboardingDiv >
+      <OnboardingContainer >
+        <OnboardingContent >
 
 
 
-                </OnboardingContent>
-            </OnboardingContainer>
-        </OnboardingDiv>
-        );
-    }
+        </OnboardingContent>
+      </OnboardingContainer>
+    </OnboardingDiv>
+    );
+  }
 }
 const mapDispatchToProps = dispatch => ({
-    setAuthVerified: () => dispatch(setAuthVerified())
+  setAuthVerified: () => dispatch(setAuthVerified())
 })
 export default connect(null, mapDispatchToProps)(TwitterCallback);
