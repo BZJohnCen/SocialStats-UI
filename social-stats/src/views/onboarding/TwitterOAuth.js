@@ -144,9 +144,9 @@ class TwitterOAuth extends Component {
                 </AuthButton>
               </Row>
             </OnboardingForm>
-            <Row style={{ position: 'relative', height: '1.5em', marginRight: '1.5em' }}>
+            <Row style={{ position: 'relative', height: '1.5em', marginRight: '1.5em', marginBottom: '0.5em' }}>
               <div style={{position: 'absolute', right: '0px'}}>
-                <Link to="/linkedin">Next</Link>
+                <Link to="/linkedin">Skip</Link>
               </div>
             </Row>
           </OnboardingContent>

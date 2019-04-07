@@ -133,9 +133,9 @@ class FacebookOAuth extends Component {
                 </AuthButton>
               </Row>
             </OnboardingForm>
-            <Row style={{ position: 'relative', height: '1.5em', marginRight: '1.5em' }}>
+            <Row style={{ position: 'relative', height: '1.5em', marginRight: '1.5em', marginBottom: '0.5em' }}>
               <div style={{position: 'absolute', right: '0px'}}>
-                <Link to="/">Next</Link>
+                <Link to="/">Skip</Link>
               </div>
             </Row>
           </OnboardingContent>
