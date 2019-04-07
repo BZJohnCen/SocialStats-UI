@@ -84,7 +84,6 @@ const SubmitButton = styled(Button)`
 `;
 const SignupButton =styled(SubmitButton)`
   margin-top: 0.2em;
-  width: 90%;
   :hover{
     background-color: #6FCF97;
   }
@@ -100,6 +99,7 @@ class Login extends Component {
       password: '',
     }
     this.handleLogin = this.handleLogin.bind(this)
+    this.goToSignup = this.goToSignup.bind(this)
   }
 
   handleLogin(e){
@@ -113,6 +113,9 @@ class Login extends Component {
     }).catch(err => {
       console.log(err)
     })
+  }
+  goToSignup(){
+    this.props.history.push('/signup');
   }
 
   render(){
@@ -149,7 +152,8 @@ class Login extends Component {
               </Col>
               <div style={{margin: '0.7em'}}></div>
               <SubmitButton onClick={this.handleLogin}>Login</SubmitButton>
-              <Link to="/signup" style={{ width: '84%'}}><SignupButton>Sign Up</SignupButton></Link>
+              <SignupButton onClick={this.goToSignup}>Sign Up</SignupButton>
+              {/*<Link to="/signup" style={{ width: '84%'}}><SignupButton>Sign Up</SignupButton></Link>*/}
             </LoginForm>
           </LoginContent>
         </LoginContainer>
