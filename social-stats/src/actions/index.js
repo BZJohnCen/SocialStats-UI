@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { deflateSync } from 'zlib';
+// import { deflateSync } from 'zlib';
 
 export const FETCH_TOKEN = 'FETCH_TOKEN';
 export const AUTH_VERIFIED = 'AUTH_VERIFIED';
@@ -19,5 +19,3 @@ export const setAuthVerified = () => dispatch => {
         payload: true
     })
 }
-
-

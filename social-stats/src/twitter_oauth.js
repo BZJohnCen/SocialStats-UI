@@ -1,4 +1,3 @@
-import axios from 'axios';
 const TwitterOAuthHelper = {
 
     getRedirectURL: () => {
@@ -19,6 +18,7 @@ const TwitterOAuthHelper = {
         }).then(res => res.json())
     },
     getCallback: (oauth_token, oauth_verifier ) => {
+        console.log(`/api/twitter/callback?oauth_token=${oauth_token}&oauth_verifier=${oauth_verifier}`)
         return fetch(`/api/twitter/callback?oauth_token=${oauth_token}&oauth_verifier=${oauth_verifier}`)
         .then(res => res.json())
     }

@@ -7,7 +7,7 @@ import { FETCH_TOKEN, setAuthVerified  } from '../../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import  {requestTokenAction}  from '../../actions/index'
-import axios from 'axios';
+
 //styled components
 const OnboardingDiv = styled.div`
   /* height: 100%;
@@ -125,7 +125,7 @@ class TwitterOAuth extends Component {
                 <ArrowButton onClick={this.prevPage}>
                   <svg id="backArrow" width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm-4.828 11.5l4.608 3.763-.679.737-6.101-5 6.112-5 .666.753-4.604 3.747h11.826v1h-11.828z"/></svg>
                 </ArrowButton>
-                  
+
               </div>
               <h2>Authorize Twitter</h2>
               {/*<div style={{position: 'absolute', right: '0px'}}>

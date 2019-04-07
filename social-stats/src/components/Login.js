@@ -109,7 +109,7 @@ class Login extends Component {
       password: this.state.password
     }).then(res => {
       console.log(res)
-      this.props.history.push('/');
+      this.props.history.push('/dashtest');
     }).catch(err => {
       console.log(err)
     })
