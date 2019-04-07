@@ -17,4 +17,4 @@ hooks:
       timeout: 300
   AfterInstall:
     - location: social-stats/scripts/build.sh
-      timeout: 300
+      timeout: 600
