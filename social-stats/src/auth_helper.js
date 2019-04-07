@@ -1,5 +1,3 @@
-
-import axios from 'axios'
 const env = process.env.NODE_ENV || "development";
 const url = env === 'production' ? process.env.PROD_EXPRESS : process.env.DEV_EXPRESS;
 const dotEnv = require('dotenv').config();
@@ -18,7 +16,7 @@ const AuthHelper = {
             Object.keys(params).forEach(k => {
                 if(!params[k]) reject('Please fill out all fields')
             } )
-            if(params['confirmPassword'] != params['password'])
+            if(params['confirmPassword'] !== params['password'])
               reject ("passwords don't match")
             else{
               var body = {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
-import { Row, Col, CardBody, Spinner, Card, ListGroup, ListGroupItem, Button, Dropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap';
-import _ from 'lodash'
+import { CardBody, Spinner, Card, Dropdown, DropdownMenu, DropdownItem, DropdownToggle } from 'reactstrap';
+// import _ from 'lodash'
 import moment from 'moment';
 import TweetCard from 'react-tweet-embed';
 

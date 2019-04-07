@@ -1,25 +1,13 @@
-import React, {
-  Component
-} from 'react';
+import React, { Component } from 'react';
 import styled from '@emotion/styled';
-import {
-  Container,
-  Row,
-  Form,
-  Button
-} from 'reactstrap';
-import {
-  Link
-} from 'react-router-dom';
-import {
-  setAuthVerified
-} from '../../actions/index'
-import {
-  connect
-} from 'react-redux';
+import { Container } from 'reactstrap';
+// import { Link } from 'react-router-dom';
+import { setAuthVerified } from '../../actions/index'
+import { connect } from 'react-redux';
 import TwitterOAuthHelper from '../../twitter_oauth';
 import SnapshotHelper from '../../helpers/snapshot_helper'
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
+
 //styled components
 const OnboardingDiv = styled.div`
   /* height: 100%;
@@ -35,8 +23,7 @@ const OnboardingDiv = styled.div`
   margin-top: -1em;
   z-index: 1;
 `;
-const OnboardingContainer = styled(Container)
-  `
+const OnboardingContainer = styled(Container)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,74 +41,70 @@ const OnboardingContent = styled.div`
             box-shadow: 0 10px 6px -6px #777;
   background-color: #f9f9f9;
 `;
-const OnboardingHeader = styled.div`
-  display: flex;
-  flex-direction:row;
-  position: relative;
-  justify-content: center;
-  height: fit-content;
-  width: auto;
-  align-items: center;
-  margin: 2em 0em 1em 0em;
-`;
-const OnboardingForm = styled(Form)
-  `
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 6em 0em 8em 0em;
-`;
-const AuthButton = styled(Button)
-  `
-  background-color: transparent;
-  border-radius: 0.7em;
-  width: fit-content;
-  height: 2.5em;
-  margin: 1em 1em 1em 1em;
-  padding: 0.7em 2em 2.4em 2em;
-  color: #000;
-  -webkit-box-shadow: 0 6px 6px -6px #777;
-       -moz-box-shadow: 0 6px 6px -6px #777;
-            box-shadow: 0 6px 6px -6px #777;
-  border-color: #000;
-
-  :hover{
-    background-color: #3b5998;
-    border-color: transparent;
-
-    #facebookLogo{
-      fill: #fff;
-    }
-  }
-`;
-const ArrowButton = styled.button`
-  background: none;
-  border: none;
-
-  #backArrow:hover{
-    fill: #2D9CDB;
-  }
-  :focus{
-    outline: 0;
-  }
-`;
-const FacebookLogo = styled.span`
-  padding: 0em 0em 0em 1em;
-`;
+// const OnboardingHeader = styled.div`
+//   display: flex;
+//   flex-direction:row;
+//   position: relative;
+//   justify-content: center;
+//   height: fit-content;
+//   width: auto;
+//   align-items: center;
+//   margin: 2em 0em 1em 0em;
+// `;
+// const OnboardingForm = styled(Form)`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   margin: 6em 0em 8em 0em;
+// `;
+// const AuthButton = styled(Button)`
+//   background-color: transparent;
+//   border-radius: 0.7em;
+//   width: fit-content;
+//   height: 2.5em;
+//   margin: 1em 1em 1em 1em;
+//   padding: 0.7em 2em 2.4em 2em;
+//   color: #000;
+//   -webkit-box-shadow: 0 6px 6px -6px #777;
+//        -moz-box-shadow: 0 6px 6px -6px #777;
+//             box-shadow: 0 6px 6px -6px #777;
+//   border-color: #000;
+//
+//   :hover{
+//     background-color: #3b5998;
+//     border-color: transparent;
+//
+//     #facebookLogo{
+//       fill: #fff;
+//     }
+//   }
+// `;
+// const ArrowButton = styled.button`
+//   background: none;
+//   border: none;
+//
+//   #backArrow:hover{
+//     fill: #2D9CDB;
+//   }
+//   :focus{
+//     outline: 0;
+//   }
+// `;
+// const FacebookLogo = styled.span`
+//   padding: 0em 0em 0em 1em;
+// `;
 
 //main component
 class TwitterCallback extends Component {
-  constructor(props) {
+  constructor(props){
     super(props);
     this.state = {
       default: true
     }
-
-    this.prevPage = this.prevPage.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount(){
     //example params
     //oauth_token=abc&oauth_verifier=def
 
@@ -157,7 +140,7 @@ class TwitterCallback extends Component {
               SnapshotHelper.initializeWeeklySnapshots(localStorage.getItem('userId'), handle)
             ]
             Promise.all(snapshotPromises).then(() => {
-              
+
               //SnapshotHelper.getWeeklySnapshots(localStorage.getItem('userId'))
                 //.then(results => console.log(results, 'results'))
                 this.props.setAuthVerified()
@@ -165,11 +148,6 @@ class TwitterCallback extends Component {
               })
           })
       })
-
-  }
-
-  prevPage() {
-    this.props.history.goBack();
   }
 
   render() {
@@ -177,16 +155,16 @@ class TwitterCallback extends Component {
     return (<OnboardingDiv >
       <OnboardingContainer >
         <OnboardingContent >
-
-
-
+          Success!
         </OnboardingContent>
       </OnboardingContainer>
     </OnboardingDiv>
     );
   }
 }
+
 const mapDispatchToProps = dispatch => ({
   setAuthVerified: () => dispatch(setAuthVerified())
 })
+
 export default connect(null, mapDispatchToProps)(TwitterCallback);
