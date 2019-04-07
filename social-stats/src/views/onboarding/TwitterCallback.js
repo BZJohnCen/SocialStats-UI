@@ -113,15 +113,16 @@ class TwitterCallback extends Component {
     url[1] = url[1].split('&')[0]
     url[2] = url[2].split('#')[0]
     console.log(url[1], url[2], 'URLS')
-    const handle = 'ChatimeCanada';
+    const handle = '';
     TwitterOAuthHelper.getCallback(url[1], url[2])
       .then(res => {
+        handle = res.name
         TwitterOAuthHelper.patchUserId(localStorage.getItem('userId'), {
           twitter: {
             accessToken: res.access_token,
             tokenSecret: res.token_secret,
-            // name: res.name,
-            name: 'ChatimeCanada',
+            name: handle,
+            // name: 'ChatimeCanada',
             id: res.id
           }
         })
