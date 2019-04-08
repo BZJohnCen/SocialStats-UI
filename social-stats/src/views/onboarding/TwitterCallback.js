@@ -113,7 +113,7 @@ class TwitterCallback extends Component {
     url[1] = url[1].split('&')[0]
     url[2] = url[2].split('#')[0]
     console.log(url[1], url[2], 'URLS')
-    const handle = '';
+    var handle = '';
     TwitterOAuthHelper.getCallback(url[1], url[2])
       .then(res => {
         handle = res.name
